@@ -1,0 +1,105 @@
+<div class="container">
+	<div class="row row-custom-1">
+		<div class="col-xs-6" ng-class="(pricingCtrl.orderType === 'instant') ? 'activeTab' : 'inactiveTab'" ng-click="pricingCtrl.showOrderType('instant')">Instant Order Pricing</div>
+		<div class="col-xs-6" ng-class="(pricingCtrl.orderType === 'premium') ? 'activeTab' : 'inactiveTab'" ng-click="pricingCtrl.showOrderType('premium')">Premium Order Pricing</div>
+	</div>
+	<div ng-if="pricingCtrl.orderType === 'instant'">
+		<div class="row row-custom-1">
+			<div class="col-xs-6" ng-class="(pricingCtrl.instantType === 'W&I') ? 'activeTab' : 'inactiveTab'" ng-click="pricingCtrl.showPrice('W&I')">Wash And Iron</div>
+			<div class="col-xs-6" ng-class="(pricingCtrl.instantType === 'W&F') ? 'activeTab' : 'inactiveTab'" ng-click="pricingCtrl.showPrice('W&F')">Wash And Fold</div>
+		</div>
+		<div ng-if="pricingCtrl.instantType === 'W&I'">
+			<table class="table table-responsive">			
+				<tr>
+					 <th>Men Wearings</th>
+					 <th>Cost(Rs.)/item </th>
+				</tr>
+				<tr><td>1. 	T-Shirt  				</td><td>13</td></tr>
+				<tr><td>2.	Shirt					</td><td>13</td></tr>
+				<tr><td>3.	Jeans					</td><td>16</td></tr>
+				<tr><td>4.	Trouser					</td><td>13</td></tr>
+				<tr><td>5.	Lungi & Dhoti			</td><td>16</td></tr>
+				<tr><td>6.	Suit & Blazer 			</td><td>31</td></tr>
+				<tr><td>7.  Kurta 					</td><td>19</td></tr>
+				<tr>
+					 <th>Women Wearings</th>
+					 <th>Cost(Rs.)/item </th>
+				</tr>
+				<tr><td>1.	Saree					</td><td>34</td></tr>
+				<tr><td>2.	Salwar & Kurta			</td><td>19</td></tr>
+				<tr><td>3.	T-Shirt					</td><td>13</td></tr>
+				<tr><td>4.  Shirt					</td><td>13</td></tr>
+				<tr><td>5.	Jeans 					</td><td>16</td></tr>
+				<tr><td>6.	Suit & Blazer 			</td><td>31</td></tr>
+				<tr><td>7.	Trouser 				</td><td>13</td></tr>
+				<tr>
+					 <th>Kids Wearings</th>
+					 <th>Cost(Rs.)/item </th>
+				</tr>
+				<tr><td>1. kids dress				</td><td>13</td></tr>
+				<tr>
+					 <th>Household</th>
+					 <th>Cost(Rs.)/item </th>
+				</tr>
+				<tr><td>1.	Cover Light 			</td><td>16</td></tr>
+				<tr><td>2.	Cover Heavy 			</td><td>21</td></tr>
+			</table>
+		</div>
+		<div ng-if="pricingCtrl.instantType === 'W&F'">
+			<table class="table table-responsive">
+				<tr>
+				 	<th>Men Wearings</th>
+				 	<th>Cost(Rs.)/item </th>
+				</tr>
+				<tr><td>1. 	T-Shirt  				</td><td>8</td></tr>
+				<tr><td>2.	Shirt					</td><td>8</td></tr>
+				<tr><td>3.	Jeans					</td><td>11</td></tr>
+				<tr><td>4.	Trouser					</td><td>8</td></tr>
+				<tr><td>5.	Lungi & Dhoti			</td><td>11</td></tr>
+				<tr><td>6.	Inner Wear				</td><td>7</td></tr>
+				<tr><td>7.	Suit & Blazer 			</td><td>21</td></tr>
+				<tr><td>8.	Cargos Short & Pyjama 	</td><td>11</td></tr>
+				<tr><td>9.	Sweatshirt & Jacket 	</td><td>21</td></tr>
+				<tr><td>10. Kurta 					</td><td>13</td></tr>
+				<tr>
+					 <th>Women Wearings</th>
+					 <th>Cost(Rs.)/item </th>
+				</tr>
+				<tr><td>1.	Saree					</td><td>21</td></tr>
+				<tr><td>2.	Salwar & Kurta			</td><td>13</td></tr>
+				<tr><td>3.	T-Shirt					</td><td>8</td></tr>
+				<tr><td>4.  Shirt					</td><td>8</td></tr>
+				<tr><td>5.	Jeans 					</td><td>11</td></tr>
+				<tr><td>6.	Inner Wear 				</td><td>7</td></tr>
+				<tr><td>7.	Suit & Blazer 			</td><td>21</td></tr>
+				<tr><td>8.	Cargos Short & Pyjama   </td><td>11</td></tr>
+				<tr><td>9.	Sweatshirt & Jacket 	</td><td>21</td></tr>
+				<tr><td>10.	Trouser 				</td><td>8</td></tr>
+				<tr>
+					 <th>Kids Wearings</th>
+					 <th>cost(Rs.)/item </th>
+				</tr>
+				<tr><td>1. kids dress				</td><td>8</td></tr>
+				<tr>
+					 <th>Household</th>
+					 <th>Cost(Rs.)/item </th>
+				</tr>
+				<tr><td>1.	Carpet(Per Sq ft) 		</td><td>6</td></tr>
+				<tr><td>2.	Hand Towel				</td><td>6</td></tr>
+				<tr><td>3.	Towel					</td><td>13</td></tr>
+				<tr><td>4.	Cover Light 			</td><td>11</td></tr>
+				<tr><td>5.	Cover Heavy 			</td><td>16</td></tr>
+				<!-- <tr><td>6.	Bathrobe 				</td><td>16</td></tr> -->
+			</table>
+		</div>
+	</div>
+	<div ng-if="pricingCtrl.orderType === 'premium'">
+		<br><p>
+			In this premium order policy customer will pay <mark>Rs. 400</mark> for one month(<i class="text-warning">amount will be collected on the first day of the service take off</i>)
+			and  customer will get the service from Laundryfit throughout the entire month(<i class="text-info">laundry will be collected on weekly basis</i>).
+			Maximum number of laundry limit is <mark>35</mark> and for the first time registered user laundry limit is <mark>35+5</mark>.<br>
+			Only official and daily used light laundries are accepted. Washing, folding and ironing will be taken care.
+				
+		</p>
+	</div>
+</div>

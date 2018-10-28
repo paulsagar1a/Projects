@@ -1,0 +1,56 @@
+<div class="container">
+	<div ng-if="premiumCtrl.serverMsg!=null" 
+		 ng-class="(premiumCtrl.serverMsg==='Order placed successfully')?'alert alert-success fade in':'alert alert-warning fade in'"
+		 >{{premiumCtrl.serverMsg}}</div>
+	<!-- Fill up your address details to initiate Premium Ordering. 
+	To know more, click on Pricing tab. -->
+	<form class="contactForm" name="contactForm" ng-submit="premiumCtrl.saveOrderDetails(contactForm)" novalidate >
+		<table class="table-custom">
+			<thead>
+				<tr><b class="text-primary">Address Details</b></tr>
+				<tr>
+					<span class="errorMessage" ng-show="contactForm.customerName.$error.pattern">Please enter Alphabets only on name field </span>
+					<span class="errorMessage" ng-show="contactForm.customerPhone.$error.pattern">Please enter a valid phone number </span>
+					<span class="errorMessage" ng-show="contactForm.customerPin.$error.pattern">Please enter a valid pin number </span>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Name<font color="red">*</font></td>
+					<td><input type="text" placeholder="type your name" name="customerName" 
+					ng-model="premiumCtrl.contactDetailsObj.customerDTO.customerName" maxlength="100" ng-pattern="/^[a-zA-Z\s]*$/" required /></td>
+				</tr>
+				<tr>
+					<td>Contact No.<font color="red">*</font></td>
+					<td><input type="text" placeholder="type your contact number" name="customerPhone" 
+					ng-model="premiumCtrl.contactDetailsObj.customerDTO.customerPhone" minlength="10" maxlength="10" ng-pattern="/^[1-9]{1}[0-9]*$/" required /></td>
+				</tr>
+				<tr>
+					<td>City<font color="red">*</font></td>
+					<td><select ng-model="premiumCtrl.contactDetailsObj.customerDTO.customerCity" required>
+							<option value="Hyderabad">Hyderabad</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>PIN Code<font color="red">*</font></td>
+					<td><input type="text" placeholder="type your postal code" name="customerPin" 
+					ng-model="premiumCtrl.contactDetailsObj.customerDTO.customerPin" minlength="6" maxlength="6" ng-pattern="/^[1-9]{1}[0-9]*$/" required /></td>
+				</tr>
+				<tr>
+					<td>Land mark<font color="red">*</font></td>
+					<td><input type="text" placeholder="type any land mark to identify your residency" name="customerLandmark" 
+					ng-model="premiumCtrl.contactDetailsObj.customerDTO.customerLandmark" maxlength="100" required /></td>
+				</tr>
+				<tr>
+					<td>Address<font color="red">*</font></td>
+					<td><textarea placeholder="type your address" name="customerAddress" 
+					ng-model="premiumCtrl.contactDetailsObj.customerDTO.customerAddress" maxlength="300" required ></textarea></td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="col-md-6 col-md-offset-3">
+			<input class="submit-custom-btn" type="submit" ng-disabled="!contactForm.$valid" value="Submit" />
+		</div><br>
+	</form>
+</div>

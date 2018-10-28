@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  <title>Laundryfit - Wash,Iron and Dry cleaning services in Hyderabad</title>
+	  <link rel="shortcut icon" href="images/laundryfiticon1.png" />
+	  <meta charset="utf-8">
+	  <meta name="description" content="Laundryfit provides best service to wash/clean,dry,iron,fold of your laundry here in Hyderabad.It gives the better and cheaper but hygienic and fast services.">
+	  <meta name="keywords" content="Laundryfit, Laundry, Laundry Services in Hyderabad, Dry cleaning in hyderabad, wash and iron hyderabad, online laundry hyderabad">
+	  <meta name="author" content="Sagar Paul">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="stylesheet" href="css/bootstrap.min.css">
+	  <link rel="stylesheet" href="css/style.lite.css">
+	  <base href="http://localhost:8080/laundryfitv1/" />
+	</head>
+	<body>
+		<div ng-app="laundryfitLiteApp">
+			<div class="navbar-header">
+			  <h1>Laundryfit</h1>
+			</div>
+			<div class="header">
+				<table class="table">
+					<thead>
+						<tr>
+							<th class="text-center"><a href="home">Home</a></th>
+							<th class="text-center"><a href="pricing">Pricing</a></th>
+							<th class="text-center"><a href="faq">FAQ</a></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="center-body">
+				<ng-view></ng-view>
+			</div>
+			
+		</div>
+				
+				<script src="js/lib/angular.min.js"></script>
+				<script src="js/lib/angular-route.min.js"></script>
+				<script src="js/scripts/laundryfit.tabs.controller.js"></script>
+				<script src="js/scripts/home.controller.js"></script>
+				<script src="js/scripts/pricing.controller.js"></script>
+				<script src="js/scripts/faq.controller.js"></script>
+				<script src="js/scripts/instant.controller.js"></script>
+				<script src="js/scripts/premium.controller.js"></script>
+				
+	</body>
+</html>

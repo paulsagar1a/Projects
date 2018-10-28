@@ -1,0 +1,364 @@
+<div class="container">
+	<div ng-if="instantCtrl.primaryStage">
+	
+		<!-- Navigation Bar -->
+		<div class="row row-custom-1">
+			<div class="col-xs-4" ng-class="(instantCtrl.instantType === 'W&I') ? 'activeTab' : 'inactiveTab'" ng-click="instantCtrl.showInstantType('W&I')">WASH & IRON</div>
+			<div class="col-xs-4" ng-class="(instantCtrl.instantType === 'W&F') ? 'activeTab' : 'inactiveTab'" ng-click="instantCtrl.showInstantType('W&F')">WASH & FOLD</div>
+			<div class="col-xs-4 col-custom-1">Rs. {{instantCtrl.orderDetailsObj.orderValue}}</div>
+		</div>
+		
+		<!-- Wash & Iron Navigation Bar -->
+		<div ng-if = "instantCtrl.instantType === 'W&I'" class="row row-custom-1">
+				<div class="col-xs-3" ng-class="(instantCtrl.instantCategory === 'M_W&I') ? 'activeTab' : 'inactiveTab'" ng-click="instantCtrl.showCategory('M_W&I')">Men's Wear</div>
+				<div class="col-xs-3" ng-class="(instantCtrl.instantCategory === 'W_W&I') ? 'activeTab' : 'inactiveTab'" ng-click="instantCtrl.showCategory('W_W&I')">Women's Wear</div>
+				<div class="col-xs-3" ng-class="(instantCtrl.instantCategory === 'K_W&I') ? 'activeTab' : 'inactiveTab'" ng-click="instantCtrl.showCategory('K_W&I')">Kid's Wear</div>
+				<div class="col-xs-3" ng-class="(instantCtrl.instantCategory === 'H_W&I') ? 'activeTab' : 'inactiveTab'" ng-click="instantCtrl.showCategory('H_W&I')">HouseHold</div>
+		</div>
+		
+		<!-- Wash & Fold Navigation Bar -->
+		<div ng-if = "instantCtrl.instantType === 'W&F'" class="row row-custom-1">
+				<div class="col-xs-3" ng-class="(instantCtrl.instantCategory === 'M_W&F') ? 'activeTab' : 'inactiveTab'" ng-click="instantCtrl.showCategory('M_W&F')">Men's Wear</div>
+				<div class="col-xs-3" ng-class="(instantCtrl.instantCategory === 'W_W&F') ? 'activeTab' : 'inactiveTab'" ng-click="instantCtrl.showCategory('W_W&F')">Women's Wear</div>
+				<div class="col-xs-3" ng-class="(instantCtrl.instantCategory === 'K_W&F') ? 'activeTab' : 'inactiveTab'" ng-click="instantCtrl.showCategory('K_W&F')">Kid's Wear</div>
+				<div class="col-xs-3" ng-class="(instantCtrl.instantCategory === 'H_W&F') ? 'activeTab' : 'inactiveTab'" ng-click="instantCtrl.showCategory('H_W&F')">HouseHold</div>
+		</div>
+		
+		<!-- Instant Category of Men's Wash & Iron items -->
+		<div ng-if = "instantCtrl.instantCategory === 'M_W&I'" class="row row-custom-1">
+			<!-- Header of Rows -->
+			<div class="col-xs-6">Item</div>
+			<div class="col-xs-6">Quantity</div>
+			<!-- Row of T-Shirt -->
+			<div class="col-xs-6">T-Shirt</div>
+			<div ng-click="instantCtrl.countTshirtMwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfTshirtMWI}}</div>
+			<div ng-click="instantCtrl.countTshirtMwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Shirt -->
+			<div class="col-xs-6">Shirt</div>
+			<div ng-click="instantCtrl.countShirtMwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfShirtMWI}}</div>
+			<div ng-click="instantCtrl.countShirtMwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Jeans -->
+			<div class="col-xs-6">Jeans</div>
+			<div ng-click="instantCtrl.countJeansMwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfJeansMWI}}</div>
+			<div ng-click="instantCtrl.countJeansMwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Trouser -->
+			<div class="col-xs-6">Trouser</div>
+			<div ng-click="instantCtrl.countTrouserMwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfTrouserMWI}}</div>
+			<div ng-click="instantCtrl.countTrouserMwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Lungi & Dhoti -->
+			<div class="col-xs-6">Lungi & Dhoti</div>
+			<div ng-click="instantCtrl.countLungiDhotiMwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfLungiDhotiMWI}}</div>
+			<div ng-click="instantCtrl.countLungiDhotiMwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Suit & Blazer -->
+			<div class="col-xs-6">Suit & Blazer</div>
+			<div ng-click="instantCtrl.countSuitsBlazerMwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfSuitsBlazerMWI}}</div>
+			<div ng-click="instantCtrl.countSuitsBlazerMwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Kurta -->
+			<div class="col-xs-6">Kurta</div>
+			<div ng-click="instantCtrl.countKurtaMwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfKurtaMWI}}</div>
+			<div ng-click="instantCtrl.countKurtaMwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+		</div>
+		
+		<!-- Instant Category of Women's Wash & Iron Items -->
+		<div ng-if = "instantCtrl.instantCategory === 'W_W&I'" class="row row-custom-1">
+			<!-- Header of Rows -->
+			<div class="col-xs-6">Item</div>
+			<div class="col-xs-6">Quantity</div>
+			<!-- Row of T-Shirt -->
+			<div class="col-xs-6">T-Shirt</div>
+			<div ng-click="instantCtrl.countTshirtWwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfTshirtWWI}}</div>
+			<div ng-click="instantCtrl.countTshirtWwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Shirt -->
+			<div class="col-xs-6">Shirt</div>
+			<div ng-click="instantCtrl.countShirtWwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfShirtWWI}}</div>
+			<div ng-click="instantCtrl.countShirtWwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Jeans -->
+			<div class="col-xs-6">Jeans</div>
+			<div ng-click="instantCtrl.countJeansWwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfJeansWWI}}</div>
+			<div ng-click="instantCtrl.countJeansWwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Trouser -->
+			<div class="col-xs-6">Trouser</div>
+			<div ng-click="instantCtrl.countTrouserWwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfTrouserWWI}}</div>
+			<div ng-click="instantCtrl.countTrouserWwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Lungi & Dhoti -->
+			<div class="col-xs-6">Saree</div>
+			<div ng-click="instantCtrl.countSareeWwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfSareeWWI}}</div>
+			<div ng-click="instantCtrl.countSareeWwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Suit & Blazer -->
+			<div class="col-xs-6">Suit & Blazer</div>
+			<div ng-click="instantCtrl.countSuitsBlazerWwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfSuitsBlazerWWI}}</div>
+			<div ng-click="instantCtrl.countSuitsBlazerWwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Kurta -->
+			<div class="col-xs-6">Salwar & Kurta</div>
+			<div ng-click="instantCtrl.countSalwarKurtaWwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfSalwarKurtaWWI}}</div>
+			<div ng-click="instantCtrl.countSalwarKurtaWwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+		</div>
+		
+		<!-- Instant Category of Kid's Wash & Iron Items -->
+		<div ng-if = "instantCtrl.instantCategory === 'K_W&I'" class="row row-custom-1">
+			<!-- Header of Rows -->
+			<div class="col-xs-6">Item</div>
+			<div class="col-xs-6">Quantity</div>
+			<!-- Row of Kid Dress -->
+			<div class="col-xs-6">Kid's Dress</div>
+			<div ng-click="instantCtrl.countKdressKwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfKdressKWI}}</div>
+			<div ng-click="instantCtrl.countKdressKwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+		</div>
+		
+		<!-- Instant Category of Household Wash & Iron Items -->
+		<div ng-if = "instantCtrl.instantCategory === 'H_W&I'" class="row row-custom-1">
+			<!-- Header of Rows -->
+			<div class="col-xs-6">Item</div>
+			<div class="col-xs-6">Quantity</div>
+			<!-- Row of Light Cover -->
+			<div class="col-xs-6">Light Cover</div>
+			<div ng-click="instantCtrl.countLcoverHwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfLcoverHWI}}</div>
+			<div ng-click="instantCtrl.countLcoverHwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Heavy Cover -->
+			<div class="col-xs-6">Heavy Cover</div>
+			<div ng-click="instantCtrl.countHcoverHwiMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfHcoverHWI}}</div>
+			<div ng-click="instantCtrl.countHcoverHwiPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+		</div>
+		
+		
+		<!-- Instant Category of Men's Wash & Fold items -->
+		<div ng-if = "instantCtrl.instantCategory === 'M_W&F'" class="row row-custom-1">
+			<!-- Header of Rows -->
+			<div class="col-xs-6">Item</div>
+			<div class="col-xs-6">Quantity</div>
+			<!-- Row of T-Shirt -->
+			<div class="col-xs-6">T-Shirt</div>
+			<div ng-click="instantCtrl.countTshirtMwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfTshirtMWF}}</div>
+			<div ng-click="instantCtrl.countTshirtMwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Shirt -->
+			<div class="col-xs-6">Shirt</div>
+			<div ng-click="instantCtrl.countShirtMwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfShirtMWF}}</div>
+			<div ng-click="instantCtrl.countShirtMwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Jeans -->
+			<div class="col-xs-6">Jeans</div>
+			<div ng-click="instantCtrl.countJeansMwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfJeansMWF}}</div>
+			<div ng-click="instantCtrl.countJeansMwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Trouser -->
+			<div class="col-xs-6">Trouser</div>
+			<div ng-click="instantCtrl.countTrouserMwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfTrouserMWF}}</div>
+			<div ng-click="instantCtrl.countTrouserMwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Lungi & Dhoti -->
+			<div class="col-xs-6">Lungi & Dhoti</div>
+			<div ng-click="instantCtrl.countLungiDhotiMwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfLungiDhotiMWF}}</div>
+			<div ng-click="instantCtrl.countLungiDhotiMwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Suit & Blazer -->
+			<div class="col-xs-6">Suit & Blazer</div>
+			<div ng-click="instantCtrl.countSuitsBlazerMwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfSuitsBlazerMWF}}</div>
+			<div ng-click="instantCtrl.countSuitsBlazerMwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Kurta -->
+			<div class="col-xs-6">Kurta</div>
+			<div ng-click="instantCtrl.countKurtaMwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfKurtaMWF}}</div>
+			<div ng-click="instantCtrl.countKurtaMwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Cargos Short & Pyjama -->
+			<div class="col-xs-6">Cargos Short & Pyjama</div>
+			<div ng-click="instantCtrl.countCargosShortPyjamaMwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfCargosShortPyjamaMWF}}</div>
+			<div ng-click="instantCtrl.countCargosShortPyjamaMwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Sweatshirt & Jacket -->
+			<div class="col-xs-6">Sweatshirt & Jacket</div>
+			<div ng-click="instantCtrl.countSweatshirtJacketMwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfSweatshirtJacketMWF}}</div>
+			<div ng-click="instantCtrl.countSweatshirtJacketMwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Inner Wear -->
+			<div class="col-xs-6">Inner Wear</div>
+			<div ng-click="instantCtrl.countInnerWearMwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfInnerWearMWF}}</div>
+			<div ng-click="instantCtrl.countInnerWearMwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+		</div>
+		
+		<!-- Instant Category of Women's Wash & Fold Items -->
+		<div ng-if = "instantCtrl.instantCategory === 'W_W&F'" class="row row-custom-1">
+			<!-- Header of Rows -->
+			<div class="col-xs-6">Item</div>
+			<div class="col-xs-6">Quantity</div>
+			<!-- Row of T-Shirt -->
+			<div class="col-xs-6">T-Shirt</div>
+			<div ng-click="instantCtrl.countTshirtWwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfTshirtWWF}}</div>
+			<div ng-click="instantCtrl.countTshirtWwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Shirt -->
+			<div class="col-xs-6">Shirt</div>
+			<div ng-click="instantCtrl.countShirtWwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfShirtWWF}}</div>
+			<div ng-click="instantCtrl.countShirtWwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Jeans -->
+			<div class="col-xs-6">Jeans</div>
+			<div ng-click="instantCtrl.countJeansWwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfJeansWWF}}</div>
+			<div ng-click="instantCtrl.countJeansWwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Trouser -->
+			<div class="col-xs-6">Trouser</div>
+			<div ng-click="instantCtrl.countTrouserWwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfTrouserWWF}}</div>
+			<div ng-click="instantCtrl.countTrouserWwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Lungi & Dhoti -->
+			<div class="col-xs-6">Saree</div>
+			<div ng-click="instantCtrl.countSareeWwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfSareeWWF}}</div>
+			<div ng-click="instantCtrl.countSareeWwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Suit & Blazer -->
+			<div class="col-xs-6">Suit & Blazer</div>
+			<div ng-click="instantCtrl.countSuitsBlazerWwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfSuitsBlazerWWF}}</div>
+			<div ng-click="instantCtrl.countSuitsBlazerWwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Salwar & Kurta -->
+			<div class="col-xs-6">Salwar & Kurta</div>
+			<div ng-click="instantCtrl.countSalwarKurtaWwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfSalwarKurtaWWF}}</div>
+			<div ng-click="instantCtrl.countSalwarKurtaWwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Cargos Short & Pyjama -->
+			<div class="col-xs-6">Cargos Short & Pyjama</div>
+			<div ng-click="instantCtrl.countCargosShortPyjamaWwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfCargosShortPyjamaWWF}}</div>
+			<div ng-click="instantCtrl.countCargosShortPyjamaWwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Sweatshirt & Jacket -->
+			<div class="col-xs-6">Sweatshirt & Jacket</div>
+			<div ng-click="instantCtrl.countSweatshirtrJacketWwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfSweatshirtJacketWWF}}</div>
+			<div ng-click="instantCtrl.countSweatshirtrJacketWwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Inner Wear -->
+			<div class="col-xs-6">Inner Wear</div>
+			<div ng-click="instantCtrl.countInnerWearWwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfInnerWearWWF}}</div>
+			<div ng-click="instantCtrl.countInnerWearWwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+		</div>
+		
+		<!-- Instant Category of Kid's Wash & Fold Items -->
+		<div ng-if = "instantCtrl.instantCategory === 'K_W&F'" class="row row-custom-1">
+			<!-- Header of Rows -->
+			<div class="col-xs-6">Item</div>
+			<div class="col-xs-6">Quantity</div>
+			<!-- Row of Kid Dress -->
+			<div class="col-xs-6">Kid's Dress</div>
+			<div ng-click="instantCtrl.countKdressKwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfKdressKWF}}</div>
+			<div ng-click="instantCtrl.countKdressKwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+		</div>
+		
+		<!-- Instant Category of Household Wash & Fold Items -->
+		<div ng-if = "instantCtrl.instantCategory === 'H_W&F'" class="row row-custom-1">
+			<!-- Header of Rows -->
+			<div class="col-xs-6">Item</div>
+			<div class="col-xs-6">Quantity</div>
+			<!-- Row of Light Cover -->
+			<div class="col-xs-6">Light Cover</div>
+			<div ng-click="instantCtrl.countLcoverHwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfLcoverHWF}}</div>
+			<div ng-click="instantCtrl.countLcoverHwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Heavy Cover -->
+			<div class="col-xs-6">Heavy Cover</div>
+			<div ng-click="instantCtrl.countHcoverHwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfHcoverHWF}}</div>
+			<div ng-click="instantCtrl.countHcoverHwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Towel -->
+			<div class="col-xs-6">Towel</div>
+			<div ng-click="instantCtrl.countTowelHwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfTowelHWF}}</div>
+			<div ng-click="instantCtrl.countTowelHwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Hand Towel -->
+			<div class="col-xs-6">Hand Towel</div>
+			<div ng-click="instantCtrl.countHandTowelHwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfHandTowelHWF}}</div>
+			<div ng-click="instantCtrl.countHandTowelHwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+			<!-- Row of Carpet(Per Sq ft) -->
+			<div class="col-xs-6">Carpet(Per Sq ft)</div>
+			<div ng-click="instantCtrl.countCarpetHwfMinus()" class="col-xs-2 btn btn-default glyphicon glyphicon-minus"></div>
+			<div class="col-xs-2">{{instantCtrl.noOfCarpetHWF}}</div>
+			<div ng-click="instantCtrl.countCarpetHwfPlus()" class="col-xs-2 btn btn-default glyphicon glyphicon-plus"></div>
+		</div>
+		<div class="footer navbar-fixed-bottom">
+			<div class="row">
+				<a href='home' class="btn btn-primary active col-xs-6">Cancel</a>
+				<button type="button" class="btn btn-primary active col-xs-6" ng-if="instantCtrl.orderDetailsObj.orderValue >= 100" ng-click="instantCtrl.primaryStage = !instantCtrl.primaryStage">Proceed Order</button>
+				<button type="button" class="btn btn-primary disabled col-xs-6" ng-if="instantCtrl.orderDetailsObj.orderValue < 100">Proceed Order</button>
+			</div>
+		</div>
+	</div>
+	<div ng-if="!instantCtrl.primaryStage">
+		<div ng-if="instantCtrl.serverMsg!=null"
+			 ng-class="(instantCtrl.serverMsg==='Order placed successfully')?'alert alert-success fade in':'alert alert-warning fade in'">
+				{{instantCtrl.serverMsg}}</div>
+		<!-- Fill up your address details to initiate Premium Ordering. 
+		To know more, click on Pricing tab. -->
+		<form class="contactForm" name="contactForm" ng-submit="instantCtrl.saveOrderDetails(contactForm)" novalidate >
+			<table class="table-custom">
+				<thead>
+					<tr><b class="text-primary">Address Details</b></tr>
+					<tr>
+						<span class="errorMessage" ng-show="contactForm.customerName.$error.pattern">Please enter Alphabets only on name field </span>
+						<span class="errorMessage" ng-show="contactForm.customerPhone.$error.pattern">Please enter a valid phone number </span>
+						<span class="errorMessage" ng-show="contactForm.customerPin.$error.pattern">Please enter a valid pin number </span>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Name<font color="red">*</font></td>
+						<td><input type="text" placeholder="type your name" name="customerName" 
+						ng-model="instantCtrl.orderDetailsObj.customerDTO.customerName" maxlength="100" ng-pattern="/^[a-zA-Z\s]*$/" required /></td>
+					</tr>
+					<tr>
+						<td>Contact No.<font color="red">*</font></td>
+						<td><input type="text" placeholder="type your contact number" name="customerPhone" 
+						ng-model="instantCtrl.orderDetailsObj.customerDTO.customerPhone" minlength="10" maxlength="10" ng-pattern="/^[1-9]{1}[0-9]*$/" required /></td>
+					</tr>
+					<tr>
+						<td>City<font color="red">*</font></td>
+						<td><select ng-model="instantCtrl.orderDetailsObj.customerDTO.customerCity" required>
+								<option value="Hyderabad">Hyderabad</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>PIN Code<font color="red">*</font></td>
+						<td><input type="text" placeholder="type your postal code" name="customerPin" 
+						ng-model="instantCtrl.orderDetailsObj.customerDTO.customerPin" minlength="6" maxlength="6" ng-pattern="/^[1-9]{1}[0-9]*$/" required /></td>
+					</tr>
+					<tr>
+						<td>Land mark<font color="red">*</font></td>
+						<td><input type="text" placeholder="type any land mark to identify your residency" name="customerLandmark" 
+						ng-model="instantCtrl.orderDetailsObj.customerDTO.customerLandmark" maxlength="100" required /></td>
+					</tr>
+					<tr>
+						<td>Address<font color="red">*</font></td>
+						<td><textarea placeholder="type your address" name="customerAddress" 
+						ng-model="instantCtrl.orderDetailsObj.customerDTO.customerAddress" maxlength="300" required ></textarea></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="col-md-6 col-md-offset-3">
+				<input class="submit-custom-btn" type="submit" ng-disabled="!contactForm.$valid" value="Submit" />
+				<input class="submit-custom-btn" type="submit" ng-click="instantCtrl.primaryStage = !instantCtrl.primaryStage" value="Back" />
+			</div>
+			<br>
+		</form>
+	</div>
+</div>

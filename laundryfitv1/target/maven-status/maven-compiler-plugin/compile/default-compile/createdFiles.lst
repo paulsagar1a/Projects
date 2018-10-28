@@ -1,0 +1,15 @@
+com\laundryfit\dto\CustomerDTO.class
+com\laundryfit\mapper\OrderMapperImpl.class
+com\laundryfit\service\OrderServiceImpl.class
+com\laundryfit\util\LaundryfitQuery.class
+com\laundryfit\util\Constants.class
+com\laundryfit\mapper\OrderMapper.class
+com\laundryfit\entity\CustomerInfo.class
+com\laundryfit\entity\OrderInfo.class
+com\laundryfit\business\OrderBusinessService.class
+com\laundryfit\dao\HibernateCfg.class
+com\laundryfit\business\OrderBusinessServiceImpl.class
+com\laundryfit\util\ElaborateOrderDetails.class
+com\laundryfit\dto\OrderDTO.class
+com\laundryfit\service\OrderService.class
+com\laundryfit\dao\OrderDao.class
