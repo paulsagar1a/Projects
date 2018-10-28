@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="title" content="Json Web Token (JWT)">
+<meta name="referrer" content="unsafe-url">
+<meta name="description" content="In this article, How to create and varify json web token (jwt) will be discussed.">
+<meta name="keywords" content="json web token,jwt,authentication,oAuth,web token,create,varify,java">
+<meta name="author" content="Sagar Paul">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/lib/bootstrap.min.css">
+<link rel="stylesheet" href="css/custom/style.css">
+<title>Create and Varify JWT in Java</title>
+<link rel="shortcut icon" href="images/title-icon.jpeg" />
+</head>
+<body>
+	<div class="jumbotron"><h4>Create and Verify JSON Web Token in Java</h4></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-2 col-xs-2">.col-sm-4</div>
+			<div class="col-sm-8 col-xs-8">
+			<h5>HOW TO CREATE JSON WEB TOKEN</h5>
+				<p>
+					Here in the first segment of this article we are going to discuss how to create 
+					JSON web token in java.<br>
+					To create a JSON web token in java we are going to implement <strong>JJWT</strong>.
+					JJWT is a standard and efficient way of creating JSON web token in a very ease and 
+					understandable manner. So to implement JJWT first we need to put the JJWT jar file 
+					in the library of corresponding project. <a href="https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt">
+					Here</a> is the link to download the JJWT jar.<br>
+				</p>
+				<Strong>Construct and Encode Token</Strong><br>
+<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #999999; font-style: italic">/** method to create a JWT */</span>
+<span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #d0d0d0">String</span> <span style="color: #447fcf">createJWT</span><span style="color: #d0d0d0">(String</span> <span style="color: #d0d0d0">id,</span> <span style="color: #6ab825; font-weight: bold">long</span> <span style="color: #d0d0d0">expireTime,</span>
+	<span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">subject,</span> <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">issuer,</span> <span style="color: #d0d0d0">String</span> <span style="color: #d0d0d0">audience){</span>
+ 
+	<span style="color: #999999; font-style: italic">/** JWT signature algorithm to sign the token */</span>
+	<span style="color: #d0d0d0">SignatureAlgorithm</span> <span style="color: #d0d0d0">signatureAlgorithm</span> <span style="color: #d0d0d0">=</span> 
+			<span style="color: #d0d0d0">SignatureAlgorithm.</span><span style="color: #bbbbbb">HS256</span><span style="color: #d0d0d0">;</span>
+ 
+	<span style="color: #999999; font-style: italic">/** Here all the times are considered to be </span>
+<span style="color: #999999; font-style: italic">	in millisecond i.e expireTime &amp; currentTime */</span>
+	<span style="color: #6ab825; font-weight: bold">long</span> <span style="color: #d0d0d0">currentTime</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">currentTimeMillis</span><span style="color: #d0d0d0">();</span>
+	<span style="color: #d0d0d0">Date</span> <span style="color: #d0d0d0">present</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Date(currentTime);</span>
+	
+	<span style="color: #999999; font-style: italic">/** Here HashKey is a class which consists </span>
+<span style="color: #999999; font-style: italic">	the secret Key of the Hashing Algorithm */</span>
+	<span style="color: #d0d0d0">HashKey</span> <span style="color: #d0d0d0">hashKey</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">HashKey();</span>
+	
+	<span style="color: #999999; font-style: italic">/** Sign JWT with HashKey secret */</span>
+	<span style="color: #6ab825; font-weight: bold">byte</span><span style="color: #d0d0d0">[]</span> <span style="color: #d0d0d0">hashKeyByte</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">DatatypeConverter</span>
+		<span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">parseBase64Binary</span><span style="color: #d0d0d0">(hashKey.</span><span style="color: #bbbbbb">getSecret</span><span style="color: #d0d0d0">());</span>
+	<span style="color: #d0d0d0">Key</span> <span style="color: #d0d0d0">signingKey</span> <span style="color: #d0d0d0">=</span> 
+		<span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #447fcf">SecretKeySpec</span><span style="color: #d0d0d0">(hashKeyByte,</span> 
+		<span style="color: #d0d0d0">signatureAlgorithm.</span><span style="color: #bbbbbb">getJcaName</span><span style="color: #d0d0d0">());</span>
+ 
+	<span style="color: #999999; font-style: italic">/** Set the JWT Claims */</span>
+	<span style="color: #d0d0d0">JwtBuilder</span> <span style="color: #d0d0d0">builder</span> <span style="color: #d0d0d0">=</span> 
+		<span style="color: #d0d0d0">Jwts.</span><span style="color: #bbbbbb">builder</span><span style="color: #d0d0d0">().</span><span style="color: #bbbbbb">setId</span><span style="color: #d0d0d0">(id)</span>
+			<span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">setIssuedAt</span><span style="color: #d0d0d0">(present)</span>
+			<span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">setSubject</span><span style="color: #d0d0d0">(subject)</span>
+			<span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">setIssuer</span><span style="color: #d0d0d0">(issuer)</span>
+			<span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">setAudience</span><span style="color: #d0d0d0">(audience)</span>
+			<span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">signWith</span><span style="color: #d0d0d0">(signatureAlgorithm,</span> <span style="color: #d0d0d0">signingKey);</span>
+ 
+	<span style="color: #999999; font-style: italic">/** add the expiration time */</span>
+	<span style="color: #6ab825; font-weight: bold">if</span> <span style="color: #d0d0d0">(expireTime</span> <span style="color: #d0d0d0">&gt;=</span> <span style="color: #3677a9">0</span><span style="color: #d0d0d0">)</span> <span style="color: #d0d0d0">{</span>
+		<span style="color: #6ab825; font-weight: bold">long</span> <span style="color: #d0d0d0">calExpire</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">currentTime</span> <span style="color: #d0d0d0">+</span> <span style="color: #d0d0d0">expireTime;</span>
+		<span style="color: #d0d0d0">Date</span> <span style="color: #d0d0d0">expire</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">Date(calExpire);</span>
+		<span style="color: #d0d0d0">builder.</span><span style="color: #bbbbbb">setExpiration</span><span style="color: #d0d0d0">(expire);</span>
+	<span style="color: #d0d0d0">}</span>
+ 
+	<span style="color: #999999; font-style: italic">/** Build and serialize a compact, </span>
+<span style="color: #999999; font-style: italic">	URL-safe encoded string */</span>
+	<span style="color: #6ab825; font-weight: bold">return</span> <span style="color: #d0d0d0">builder.</span><span style="color: #bbbbbb">compact</span><span style="color: #d0d0d0">();</span>
+<span style="color: #d0d0d0">}</span>
+</pre></div>
+				<br>
+				<strong>Verify and Decode Token</strong><br>
+				<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #999999; font-style: italic">/**Method to validate and read the JWT */</span>
+<span style="color: #6ab825; font-weight: bold">private</span> <span style="color: #6ab825; font-weight: bold">void</span> <span style="color: #447fcf">verifyJWT</span><span style="color: #d0d0d0">(String</span> <span style="color: #d0d0d0">accessToken)</span> <span style="color: #d0d0d0">{</span>
+	
+	<span style="color: #999999; font-style: italic">/** here HashKey is a class which consists </span>
+<span style="color: #999999; font-style: italic">	the secret Key of the Hashing Algorithm */</span>
+	<span style="color: #d0d0d0">HashKey</span> <span style="color: #d0d0d0">hashKey</span> <span style="color: #d0d0d0">=</span> <span style="color: #6ab825; font-weight: bold">new</span> <span style="color: #d0d0d0">HashKey();</span>
+	
+	<span style="color: #999999; font-style: italic">/** This line will throw an exception if</span>
+<span style="color: #999999; font-style: italic">	it is not a signed JWS (as expected) */</span>
+	<span style="color: #d0d0d0">Claims</span> <span style="color: #d0d0d0">claims</span> <span style="color: #d0d0d0">=</span> <span style="color: #d0d0d0">Jwts.</span><span style="color: #bbbbbb">parser</span><span style="color: #d0d0d0">()</span>         
+	    <span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">setSigningKey</span><span style="color: #d0d0d0">(DatatypeConverter</span>
+		<span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">parseBase64Binary</span><span style="color: #d0d0d0">(hashKey.</span><span style="color: #bbbbbb">getSecret</span><span style="color: #d0d0d0">()))</span>
+	    <span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">parseClaimsJws</span><span style="color: #d0d0d0">(accessToken).</span><span style="color: #bbbbbb">getBody</span><span style="color: #d0d0d0">();</span>
+	
+	<span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;ID: &quot;</span><span style="color: #d0d0d0">+claims.</span><span style="color: #bbbbbb">getId</span><span style="color: #d0d0d0">());</span>
+	<span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Subject: &quot;</span><span style="color: #d0d0d0">+claims.</span><span style="color: #bbbbbb">getSubject</span><span style="color: #d0d0d0">());</span>
+	<span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Issuer: &quot;</span><span style="color: #d0d0d0">+claims.</span><span style="color: #bbbbbb">getIssuer</span><span style="color: #d0d0d0">());</span>
+	<span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Audience: &quot;</span><span style="color: #d0d0d0">+claim.</span><span style="color: #bbbbbb">getAudience</span><span style="color: #d0d0d0">);</span>
+	<span style="color: #d0d0d0">System.</span><span style="color: #bbbbbb">out</span><span style="color: #d0d0d0">.</span><span style="color: #bbbbbb">println</span><span style="color: #d0d0d0">(</span><span style="color: #ed9d13">&quot;Expiration: &quot;</span><span style="color: #d0d0d0">+claims.</span><span style="color: #bbbbbb">getExpiration</span><span style="color: #d0d0d0">());</span>
+<span style="color: #d0d0d0">}</span>
+</pre></div>	
+				<br>
+				<strong>Conclusion</strong>
+				<p>
+					This is a very simple way of creating and verifying JSON web token. 
+					The Key here we used is the secret of signing the signature and making
+					it an encrypted form. It is significantly a timeless and effortless way of creating 
+					token based authentication. <br>
+					In the next chapter, we will discuss advanced security perspectives of token based 
+					authentication and add some more security features to make JWT a super secure oauth application.
+				</p>
+			</div>
+			<div class="col-sm-2 col-xs-2">.col-sm-4</div>
+		</div>
+	</div>
+</body>
+</html>

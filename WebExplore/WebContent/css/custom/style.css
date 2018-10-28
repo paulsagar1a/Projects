@@ -1,0 +1,33 @@
+@CHARSET "ISO-8859-1";
+
+.jumbotron {
+    text-align: center;
+    color: #ffffff;
+    background-color: #20add0;
+    font-family: monospace;
+}
+
+.container {
+    font-family: sans-serif;
+}
+
+p {
+	color: #645c57e8;
+    font-size: 16px;
+    line-height: 2;
+    /* color: #1c0606b8;
+    font-size: 15px;
+    font-family: serif; */
+}
+
+pre, code {
+  font-family: monospace, monospace;
+}
+pre {
+  overflow: auto;
+}
+pre > code {
+  display: block;
+  padding: 1rem;
+  word-wrap: normal;
+}

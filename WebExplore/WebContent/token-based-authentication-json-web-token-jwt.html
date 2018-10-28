@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<meta name="title" content="Json Web Token (JWT)">
+<meta name="referrer" content="unsafe-url">
+<meta name="description" content="In this article, Introduction of json web token and best way of implementing jwt will be explained.">
+<meta name="keywords" content="json web token,jwt,authentication,oAuth,web token,create jwt, varify jwt">
+<meta name="author" content="Sagar Paul">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/lib/bootstrap.min.css">
+<link rel="stylesheet" href="css/custom/style.css">
+<title>JSON Web Token - jwt</title>
+<link rel="shortcut icon" href="images/title-icon.jpeg" />
+</head>
+<body>
+	<div class="jumbotron"><h4>Json Web Token(JWT) Introduction</h4></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-2 col-xs-2">.col-sm-4</div>
+			<div class="col-sm-8 col-xs-8">
+				<h5>WHAT IS JSON WEB TOKEN?</h5>
+				<p>
+					JSON Web Token or JWT is a <strong>compact self-defined independent</strong> string which 
+					is used for token based authentication. Now, we say JWT is <strong>compact</strong> because <br>
+					&nbsp;&#9900; it is smaller in size as compared to other token base authentication techniques <br>
+					&nbsp;&#9900; we can easily send it through URL or HTTP header
+					<br>And <strong>self-defined independent</strong> as <br>
+					&nbsp;&#9900; it contains all the required information to validate any user <br>
+					&nbsp;&#9900; it liberates the burden of server by repudiating the need to query the database simultaneously
+					
+				</p>
+				<h5>WHAT IS THE STRUCTURE OF JSON WEB TOKEN?</h5>
+				<P>
+					JSON web token consists of three fragments separated by dots(.) which are: <br>
+					&#07; Header <br> 
+					&#07; Payload <br>
+					&#07; Signature <br>
+					Now let's talk about each part in details.<br>
+					
+					<strong>Header</strong><br>
+					Header usually consists of two parts token type and hashing algorithm to be used. Token type is written 
+					as 'typ' which must be 'JWT' and hashing algorithm is written as 'alg' which may be HS256 or HMAC SHA-256 or 
+					any other preferable hash algorithm. <br>
+					Example:<br>
+					<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">{</span>
+   <span style="color: #6ab825; font-weight: bold">&quot;alg&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;HMACSHA256&quot;</span><span style="color: #d0d0d0">,</span>
+   <span style="color: #6ab825; font-weight: bold">&quot;typ&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;JWT&quot;</span>
+<span style="color: #d0d0d0">}</span>
+</pre></div>
+
+					<br>
+					
+					<strong>Payload</strong><br>
+					The second part of JWT is payload, which basically contains all the additional 
+					information to justify the Claim Set. Here Claim Set represents a JSON object whose
+					members are the claims carried by the JWT. <u>The claim names within the object must be
+					unique</u>.<br>
+					There are three types of claims: registered, public and private claims.<br>
+					
+					<strong>Registered Claims</strong><br>
+					Registered claims, also called Reserved claims which are not mandatory but recommended set
+					of claims. They are <u>predefined</u> or <u>reserved</u> by JWT, provide convenient and interoperable 
+					claims. Here are the some substantially used claims:<br>
+					&nbsp;&nbsp;&#07; iss: The issuer of the token <br>
+					&nbsp;&nbsp;&#07; sub: The subject of the token <br>
+					&nbsp;&nbsp;&#07; aud: The audience of the token <br>
+					&nbsp;&nbsp;&#07; exp: The expiration time after which the token MUST NOT be accepted for processing <br>
+					To know more about JWT claims visit <a href="https://tools.ietf.org/html/rfc7519#section-4.1">here</a>.<br>
+					<b>Note that:</b> <i>All the names are short because the core goal of JWTs is to make it compact.</i> <br>
+					
+					<strong>Public Claims</strong><br>
+					These are the claims that we can create and use in payload section of JWT. But to prevent collision
+					they should be defined in the <a href="https://www.iana.org/assignments/jwt/jwt.xhtml">IANA JSON Web Token Claims Registry</a>
+					or be a Public Name: a value that contains a Collision-Resistant Name. <br>
+					
+					<strong>Private Claims</strong><br>
+					They are the custom claims created to share information between producer and consumer and must not be
+					Reserved or Public Claims.Unlike Public Names, these private names are subject to collision and should be used with caution.<br>
+					Example: <br>
+					<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">{</span>
+   <span style="color: #6ab825; font-weight: bold">&quot;iss&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;tokenworld.edu&quot;</span><span style="color: #d0d0d0">,</span>
+   <span style="color: #6ab825; font-weight: bold">&quot;exp&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #3677a9">3600000</span><span style="color: #d0d0d0">,</span>
+   <span style="color: #6ab825; font-weight: bold">&quot;name&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #ed9d13">&quot;Sagar Paul&quot;</span><span style="color: #d0d0d0">,</span>
+   <span style="color: #6ab825; font-weight: bold">&quot;admin&quot;</span><span style="color: #d0d0d0">:</span> <span style="color: #6ab825; font-weight: bold">true</span>
+<span style="color: #d0d0d0">}</span>
+</pre></div>
+					
+					
+					 <br>
+					<strong>Signature</strong><br>
+					The final part of JSON web token is Signature. To create a signature we need the 
+					following elements: <br>
+					&nbsp;&nbsp;&#9900; encoded header <br>
+					&nbsp;&nbsp;&#9900; encoded payload <br>
+					&nbsp;&nbsp;&#9900; a secret key <br>
+					
+					Now this is how we can get the signature: <br>
+					<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #d0d0d0">HMACSHA256(</span>
+      <span style="color: #d0d0d0">base64UrlEncode(header)</span> <span style="color: #d0d0d0">+</span> <span style="color: #ed9d13">&quot;.&quot;</span> <span style="color: #d0d0d0">+</span>
+      <span style="color: #d0d0d0">base64UrlEncode(payload),</span>
+      <span style="color: #d0d0d0">secretKey)</span>
+</pre></div>
+					
+					
+					<br>
+					The secret key is the signature held by the server. This is the way that server will be able
+					to verify existing token and sign new one. <br>
+					The signature will be look like: <br>
+					<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #40ffff">ZMTFjOL</span><span style="color: #d0d0d0">-</span><span style="color: #40ffff">hyWUTNOBBVEKJkrc7uWZedMLXyS4IFl</span><span style="color: #d0d0d0">-</span><span style="color: #40ffff">U6c</span>
+</pre></div>
+					<br>
+					Now we have our full JSON Web Token<br>
+					<div style="background: #202020; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #40ffff">eyJhbGciOiJIUzI1NiJ9</span><span style="color: #d0d0d0">.</span><span style="color: #40ffff">eyJqdGkiOiIxIiwiaWF0IjoxNTE1MjYxOD</span>
+<span style="color: #40ffff">c4LCJzdWIiOiJsYXVuZHJ5Zml0QHN1cHBvcnQiLCJpc3MiOiJzdXBwb3</span>
+<span style="color: #40ffff">J0QGxhdW5kcnlmaXQuY29tIiwiZXhwIjoxNTE1MjY1NDc4fQ</span><span style="color: #d0d0d0">.</span>
+<span style="color: #40ffff">ZMTFjOL</span><span style="color: #d0d0d0">-</span><span style="color: #40ffff">hyWUTNOBBVEKJkrc7uWZedMLXyS4IFl</span><span style="color: #d0d0d0">-</span><span style="color: #40ffff">U6c</span>
+</pre></div>
+					
+					 <br>
+					<b>Note that:</b> <i>To remove potential ambiguities in the representation of
+					 JSON Web Token it is always embedded in Base64 Encoded format. </i> 
+				</P>
+				<h5>ADVANTAGE OF JSON WEB TOKEN OVER OTHER TOKEN BASED AUTHENTATION</h5>
+				<p>
+					There are significant benefits of using JSON Web Token over <strong>Simple Web
+					Token (SWT)</strong> and <strong>Security Assertion Markup Language Tokens (SAML)</strong> <br>
+					&#x2050;&nbsp;&nbsp;JSON is less verbose than XML, And when you encode JSON its size is also smaller than XML;
+					which makes JWT more compact than SAML. This makes JWT more preferable to be passed in HTTP
+					and Restful environment than SWT or SAML.<br>
+					&#x2050;&nbsp;&nbsp;JSON maps directly to the object where XML dosen't have a natural document-to-object mapping.
+					This makes it easier to work with JWT than SAML.<br>
+					&#x2050;&nbsp;&nbsp;In the case of client side processing of Web Token, JSON is always the suitable choice.<br>
+					&#x2050;&nbsp;&nbsp;JWT and SAML tokens can use public-private key pair to produce even more secure signature which 
+					is not be possible in the case of Simple Web Token (SWT).
+					
+				</p>
+			</div>
+			<div class="col-sm-2 col-xs-2">.col-sm-4</div>
+		</div>
+	</div>
+</body>
+</html>
