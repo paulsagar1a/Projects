@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.lse</groupId>
+  <artifactId>laundryfit-support-v1</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>laundryfit-support-v1 Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-core -->
+	<dependency>
+	    <groupId>com.sun.jersey</groupId>
+	    <artifactId>jersey-core</artifactId>
+	    <version>1.19</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-json -->
+	<dependency>
+	    <groupId>com.sun.jersey</groupId>
+	    <artifactId>jersey-json</artifactId>
+	    <version>1.19</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-servlet -->
+	<dependency>
+	    <groupId>com.sun.jersey</groupId>
+	    <artifactId>jersey-servlet</artifactId>
+	    <version>1.19</version>
+	 </dependency>
+	 <!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>servlet-api</artifactId>
+	    <version>2.3</version>
+	    <scope>provided</scope>
+	 </dependency>
+	 <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j -->
+	<dependency>
+	    <groupId>org.apache.logging.log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>2.9.1</version>
+	    <type>pom</type>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>5.2.10.Final</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-validator</artifactId>
+	    <version>5.4.1.Final</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/net.sf.oval/oval -->
+	<dependency>
+	    <groupId>net.sf.oval</groupId>
+	    <artifactId>oval</artifactId>
+	    <version>1.31</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-context</artifactId>
+	    <version>4.3.10.RELEASE</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.springframework/spring-test -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-test</artifactId>
+	    <version>4.3.10.RELEASE</version>
+	    <scope>test</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.modelmapper</groupId>
+	    <artifactId>modelmapper</artifactId>
+	    <version>1.1.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>5.1.43</version>
+	</dependency>
+	<dependency>
+	    <groupId>com.fasterxml.jackson.core</groupId>
+	    <artifactId>jackson-databind</artifactId>
+	    <version>2.8.9</version>
+	</dependency>
+	<dependency>
+	    <groupId>io.jsonwebtoken</groupId>
+	    <artifactId>jjwt</artifactId>
+	    <version>0.9.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/commons-collections/commons-collections -->
+	<dependency>
+	    <groupId>commons-collections</groupId>
+	    <artifactId>commons-collections</artifactId>
+	    <version>3.2.1</version>
+	</dependency>
+			
+  </dependencies>
+  <build>
+    <finalName>laundryfit-support-v1</finalName>
+  </build>
+</project>

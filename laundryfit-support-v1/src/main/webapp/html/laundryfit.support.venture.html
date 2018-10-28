@@ -1,0 +1,46 @@
+<div class="container-fluid">
+	<div class="row custom-tab-header stuck">
+		<div class="col-xs-3"></div>
+		<input class="col-xs-4 txt-color" type="text" placeholder="phone number" ng-model="ventureCtrl.customerPhone"
+				minlength="10" maxlength="10" ng-pattern="/^[1-9]{1}[0-9]*$/" required>
+		<input type="submit" class="col-xs-2 btn btn-primary" ng-click="ventureCtrl.search()" value="Search">
+		<div class="col-xs-3"></div>
+		<input type="submit" class="btn btn-primary col-xs-4" value="Instant Orders" ng-click="ventureCtrl.search('instant_order')">
+		<input type="submit" class="btn btn-primary col-xs-4" value="Premium Orders" ng-click="ventureCtrl.search('premium_order')">
+		<input type="submit" class="btn btn-success col-xs-4" value="Complete" ng-click="ventureCtrl.complete()">
+		<input type="submit" class="btn btn-primary col-xs-3" value="In-progress" ng-click="ventureCtrl.search('in_progress_instant_order')">
+		<input type="submit" class="btn btn-primary col-xs-3" value="Completed" ng-click="ventureCtrl.search('completed_instant_order')">
+		<input type="submit" class="btn btn-primary col-xs-3" value="In-progress" ng-click="ventureCtrl.search('in_progress_premium_order')">
+		<input type="submit" class="btn btn-primary col-xs-3" value="Completed" ng-click="ventureCtrl.search('completed_premium_order')">
+	</div>
+	<div class="scroll-sd">
+		<div ng-if="ventureCtrl.isComplete" class="custom-success">Order(s) are successfully completed &#x263A;</div>
+		<div ng-if="ventureCtrl.retrivedData !== null && ventureCtrl.retrivedData.length !== 0" 
+			 class="custom-sr">Search result(s)...</div>
+		<div ng-repeat="obj in ventureCtrl.retrivedData | orderBy:'-orderId'">
+			<div class="panel-body row" ng-class="(obj.orderType==='INSTANT')?'instant':'premium'">
+				<div class="col-xs-2"><input ng-if="obj.orderStatus==='PENDING'" type="checkbox" class="custom-chkbx" ng-model="ventureCtrl.selected[obj.orderId]"></div>
+				<div class="col-xs-8">
+		    		{{obj.orderType | limitTo: 1}}-{{obj.orderId}} Name:{{obj.customerName}} Phone:{{obj.customerPhone}}
+		    	</div>
+		    	<div class="col-xs-2"><span class="custom-link" ng-click="obj.showFullDetails = !obj.showFullDetails">View Details</span></div>
+			</div>
+			<div ng-if="obj.showFullDetails" class="row custom-sr">
+		    		<div class="col-xs-12">{{obj.orderType}} order</div>
+					<div class="col-xs-4">Name</div> <div class="col-xs-8">{{obj.customerName}}</div>
+					<div class="col-xs-4">Address</div> 
+					<div class="col-xs-8">{{obj.customerAddress}}, {{obj.customerLandmark}}, {{obj.customerPin}}, 
+						{{obj.customerCity}}, {{obj.customerPhone}}
+					</div>
+					<div class="col-xs-4">Bill</div> <div class="col-xs-8">&#x20b9; {{obj.orderValue}}</div>
+					<div class="col-xs-4">Status</div> <div class="col-xs-8" 
+						ng-class="(obj.orderStatus==='PENDING')?'pending':'not-pending'">{{obj.orderStatus}}</div>
+					<div class="col-xs-4">Start</div> <div class="col-xs-8">{{obj.orderStartTime | date:'medium'}}</div>
+					<div class="col-xs-4">End</div> <div class="col-xs-8">{{obj.orderEndTime | date:'medium'}} &#9816;</div>
+					<div class="col-xs-4">Order details</div> <div class="col-xs-8">{{obj.orderDetails}}</div>
+		  	</div>
+		</div>
+		<div ng-if="ventureCtrl.retrivedData.length === 0" class="custom-sr">No data found</div>
+		
+	</div>
+</div>

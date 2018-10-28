@@ -1,0 +1,95 @@
+.navbar {
+    background-color:#0077BE !important; 
+	color: #80ffff!important;
+	text-align: center !important;
+	margin-bottom: 0px !important; 
+}
+
+.center-body {
+	margin:0 auto;
+}
+
+.footer {
+	background: #0077BE;
+	color: #80ffff!important;
+	text-align: center !important;
+	margin-bottom: 0px !important; 
+}
+
+.form-control {
+	margin-bottom: 1%;
+}
+
+.alert {
+	margin-top: 1%;
+}
+
+.custom-tab-header {
+	color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.txt-color {
+	color: #337ab7;
+    border-radius: 5px;
+    border-color: #337ab7;
+}
+
+.pending {
+	color: #fb441e;
+}
+
+.not-pending {
+	color: #47e718;
+}
+
+.instant {
+	color: #621e06f5 !important;
+	background-color: #d2e4f2 !important;
+	font-family: serif;
+}
+
+.premium {
+	color: #621e06f5 !important;
+	background-color: #f7cef7 !important;
+	font-family: serif;
+}
+
+.custom-sr {
+	color: #400040;
+    font-family: monospace;
+}
+
+.custom-success {
+	color: #00ff40;
+    background-color: #edfef7;
+    font-family: monospace;
+    text-align: center;
+}
+
+input[type=checkbox].custom-chkbx {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 23px;
+    width: 23px;
+    background-color: #eee;
+}
+
+.custom-link {
+	text-decoration: underline;
+	text-decoration-color: #337ab7;
+	color: #337ab7;
+}
+
+.custom-link:hover {
+	text-decoration: underline;
+	text-decoration-color: #43c8e9;
+	color: #43c8e9;
+	cursor: pointer;
+}
+
+.scroll-sd {
+	padding-bottom: 5%;
+}
